@@ -7,7 +7,7 @@ const AppsCard = ({ app }) => {
   return (
     <Link
       to={`/appDetails/${id}`}
-      className="w-full max-w-sm mx-auto p-4 rounded-sm bg-white flex flex-col cursor-pointer"
+      className="w-full max-w-sm mx-auto p-4 rounded-sm bg-white flex flex-col cursor-pointer shadow-md hover:shadow-2xl hover:transition-all hover:duration-300 hover:-translate-y-3"
     >
       <div className="w-full aspect-square rounded-lg flex justify-center items-center bg-[#f5f7fa]">
         <img

@@ -8,16 +8,8 @@ import { useParams } from "react-router";
 import useAppsData from "../CustomHook/useAppsData";
 import setItem, { getItem } from "../localStorage";
 import AppNotFound from "../Pages/appNotFound";
-
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { ToastContainer, toast } from "react-toastify";
+import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -48,6 +40,7 @@ const AppDetails = () => {
   const handleInstall = () => {
     setItem(clickedApp);
     setInstalled(true);
+    toast.success("App installed successfully!");
   };
   const {
     title,
@@ -106,6 +99,7 @@ const AppDetails = () => {
             </div>
           </div>
           <button
+            disabled={installed}
             onClick={() => handleInstall()}
             className="rounded-sm bg-[#00D390] px-5 py-3.5 text-white text-xl font-semibold mt-7"
           >
@@ -146,6 +140,7 @@ const AppDetails = () => {
           {description}
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };

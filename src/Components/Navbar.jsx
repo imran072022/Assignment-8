@@ -4,8 +4,9 @@ import githubLogo from "../assets/github.png";
 import logo from "../assets/logo.png";
 const Navbar = () => {
   const activeStyle =
-    "font-medium text-base bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text";
-  const linkBase = "text-[rgba(0,0,0,0.9)] font-medium text-base";
+    "font-medium text-base bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text relative after:content-[''] after:absolute after:left-0 after:-bottom-0.25 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#632EE3] after:to-[#9F62F2]";
+  const linkBase =
+    "text-[rgba(0,0,0,0.9)] font-medium text-base relative after:content-[''] after:absolute after:left-0 after:-bottom-0.25 after:w-0 hover:after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#632EE3] after:to-[#9F62F2] after:transition-all after:duration-300 ";
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Apps", path: "/apps" },
@@ -58,7 +59,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal flex gap-8 items-center ">
+        <ul className=" flex gap-8 items-center ">
           {navLinks.map((link) => (
             <li key={link.name}>
               <NavLink
