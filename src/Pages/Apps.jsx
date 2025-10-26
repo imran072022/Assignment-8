@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import useAppsData from "../CustomHook/useAppsData";
 import AppsCard from "../Components/appsCard";
-
+import Lottie from "lottie-react";
+import loadingSpinner from "../assets/deliverService.json";
 const Apps = () => {
-  const { apps } = useAppsData();
+  const { apps, loading } = useAppsData();
   const [search, setSearch] = useState("");
-  const cleanedSearchValue = search.trim().toLocaleLowerCase();
-  const searchedApps = cleanedSearchValue
-    ? apps.filter((app) =>
-        app.title.toLocaleLowerCase().includes(cleanedSearchValue)
-      )
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [showLoader, setShowLoader] = useState(false);
+  const inputRef = useRef(null);
+  const timerRef = useRef(null);
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setShowLoader(true);
+      setDebouncedSearch(value.trim().toLowerCase());
+      setTimeout(() => {
+        setShowLoader(false);
+        inputRef.current?.focus();
+      }, 300);
+    }, 300);
+  };
+  const filteredApps = debouncedSearch
+    ? apps.filter((app) => app.title.toLowerCase().includes(debouncedSearch))
     : apps;
-
   return (
     <div className="px-3.5 my-12 md:my-20">
       <div className="mb-10 text-center">
@@ -22,9 +36,10 @@ const Apps = () => {
           Explore All Apps on the Market developed by us. We code for Millions
         </p>
       </div>
+
       <div className="flex items-center justify-between mb-4 flex-col-reverse sm:flex-row">
         <p className="text-lg md:text-2xl font-semibold mt-1.5">
-          (<span>{searchedApps.length}</span>) Apps Found
+          (<span>{filteredApps.length}</span>) Apps Found
         </p>
         <label className="input">
           <svg
@@ -44,20 +59,34 @@ const Apps = () => {
             </g>
           </svg>
           <input
+            ref={inputRef}
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSearchChange}
             type="search"
             placeholder="Search Apps"
           />
         </label>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {searchedApps.map((app) => (
-          <AppsCard app={app} key={app.id}></AppsCard>
-        ))}
-      </div>
+      {loading || showLoader ? (
+        <div className="flex justify-center items-center mt-6">
+          <Lottie
+            animationData={loadingSpinner}
+            loop={true}
+            style={{ height: 300, width: 300 }}
+          />
+        </div>
+      ) : filteredApps.length === 0 ? (
+        <p className="text-center text-5xl font-bold mt-20 text-[#627382]">
+          No Apps Found!
+        </p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {filteredApps.map((app) => (
+            <AppsCard app={app} key={app.id}></AppsCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
-
 export default Apps;

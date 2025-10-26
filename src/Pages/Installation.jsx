@@ -1,9 +1,126 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { getItem, removeItem } from "../localStorage";
+import download from "../assets/icon-downloads.png";
+import rating from "../assets/icon-ratings.png";
+import Lottie from "lottie-react";
+import loadingSpinner from "../assets/deliverService.json";
 const Installation = () => {
+  const [sort, setSort] = useState("none");
+  const [installedApps, setInstalledApps] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    const dataFromLocalStorage = getItem();
+    setTimeout(() => {
+      setInstalledApps(dataFromLocalStorage);
+      setLoading(false);
+    }, 200);
+  }, []);
+
+  const parseDownloads = (downloadsStr) => {
+    const number = parseFloat(downloadsStr);
+    if (downloadsStr.endsWith("B")) return number * 1000000000;
+    if (downloadsStr.endsWith("M")) return number * 1000000;
+    if (downloadsStr.endsWith("K")) return number * 1000;
+    return number;
+  };
+
+  const sortingApps = (() => {
+    const copiedArray = [...installedApps];
+    if (sort === "size-ascending") {
+      return copiedArray.sort(
+        (a, b) => parseDownloads(a.downloads) - parseDownloads(b.downloads)
+      );
+    } else if (sort === "size-descending") {
+      return copiedArray.sort(
+        (a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads)
+      );
+    } else {
+      return copiedArray;
+    }
+  })();
+
+  const handleRemove = (installedApp) => {
+    removeItem(installedApp);
+    setInstalledApps((prev) =>
+      prev.filter((app) => app.id !== installedApp.id)
+    );
+  };
+  if (loading)
+    return (
+      <div className="flex min-h-screen justify-center items-center">
+        <Lottie
+          animationData={loadingSpinner}
+          loop={true}
+          style={{ height: 300, width: 300 }}
+        ></Lottie>
+      </div>
+    );
   return (
-    <div>
-      <h1>It's Installation page</h1>
+    <div className="my-10 px-3.5">
+      <div className="mb-10 text-center">
+        <h2 className="font-bold text-[#001931] text-4xl md:text-[48px] mb-4">
+          Your Installed Apps
+        </h2>
+        <p className="md:text-xl text-lg px-2 text-[#627382]">
+          Explore All Trending Apps on the Market developed by us
+        </p>
+      </div>
+      {/*Sort */}
+      <div className="flex items-center justify-between mb-4 flex-col-reverse sm:flex-row">
+        <p className="text-lg md:text-2xl font-semibold mt-1.5">
+          (<span>{installedApps.length}</span>){" "}
+          {installedApps.length === 1 ? "App" : "Apps"} Found
+        </p>
+        <select
+          onChange={(e) => setSort(e.target.value)}
+          className="select w-[180px] h-[43px]"
+        >
+          <option value="none" hidden>
+            Sort by Downloads
+          </option>
+          <option value="default">Default</option>
+          <option value="size-descending">High-Low</option>
+          <option value="size-ascending">Low-High</option>
+        </select>
+      </div>
+      {/*Installed app */}
+      <div>
+        {sortingApps.map((installedApp) => (
+          <div className="flex bg-white p-4 gap-4 items-center mb-4">
+            <div>
+              <img className="w-20 h-20" src={installedApp.image} alt="" />
+            </div>
+            <div>
+              <h2 className="font-medium text-xl text-[#001931] mb-4">
+                {installedApp.title}
+              </h2>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center rounded-sm gap-2">
+                  <img className="w-4 h-4" src={download} alt="" />
+                  <p className="text-[#00D390] font-medium">
+                    {installedApp.downloads}
+                  </p>
+                </div>
+                <div className="flex items-center rounded-sm gap-2">
+                  <img className="w-4 h-4" src={rating} alt="" />
+                  <p className="text-[#FF8811] font-medium">
+                    {installedApp.ratingAvg}
+                  </p>
+                </div>
+                <p className="text-[#627382]">{installedApp.size} MB</p>
+              </div>
+            </div>
+            <button
+              onClick={() => handleRemove(installedApp)}
+              className="px-4 py-3 bg-[#00D390] text-white font-medium rounded-sm ml-auto cursor-pointer"
+            >
+              Uninstall
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,13 +1,23 @@
 import React from "react";
-
 import Banner from "../Components/Banner";
 import useAppsData from "../CustomHook/useAppsData";
 import AppsCard from "../Components/appsCard";
 import { Link } from "react-router";
+import Lottie from "lottie-react";
+import loadingSpinner from "../assets/deliverService.json";
 const Home = () => {
-  const { apps } = useAppsData();
+  const { apps, loading } = useAppsData();
   const slicedData = apps.slice(0, 8);
-  console.log(slicedData);
+  if (loading)
+    return (
+      <div className="flex min-h-screen justify-center items-center">
+        <Lottie
+          animationData={loadingSpinner}
+          loop={true}
+          style={{ height: 300, width: 300 }}
+        ></Lottie>
+      </div>
+    );
   return (
     <div>
       <Banner></Banner>

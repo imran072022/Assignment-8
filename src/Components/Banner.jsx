@@ -21,14 +21,29 @@ const Banner = () => {
           into digital experiences that truly make an impact.
         </p>
         <div className="flex flex-col md:flex-row items-center md:gap-4 gap-2 justify-center">
-          <div className="flex gap-2.5 items-center rounded-sm border border-[#D2D2D2] py-3.5 md:py-4 px-[21.5px]">
-            <img className="w-8 h-8" src={GooglePlay} alt="" />
-            <p className="font-semibold text-xl text-[#001931]">Google Play</p>
-          </div>
-          <div className="flex gap-2.5 items-center rounded-sm border border-[#D2D2D2] py-3.5 md:py-4 px-[30.5px]">
-            <img className="w-8 h-8" src={AppStore} alt="" />
-            <p className="font-semibold text-xl text-[#001931]">App Store</p>
-          </div>
+          <a
+            href="https://play.google.com/store/games?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="flex gap-2.5 items-center rounded-sm border border-[#D2D2D2] py-3.5 md:py-4 px-[21.5px] cursor-pointer hover:bg-gray-200 transition duration-150">
+              <img className="w-8 h-8" src={GooglePlay} alt="" />
+              <p className="font-semibold text-xl text-[#001931]">
+                Google Play
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.apple.com/app-store/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="flex gap-2.5 items-center rounded-sm border border-[#D2D2D2] py-3.5 md:py-4 px-[30.5px] cursor-pointer hover:bg-gray-200 transition duration-150">
+              <img className="w-8 h-8" src={AppStore} alt="" />
+              <p className="font-semibold text-xl text-[#001931]">App Store</p>
+            </div>
+          </a>
         </div>
       </div>
       {/* Hero Image*/}
