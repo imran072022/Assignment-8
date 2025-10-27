@@ -95,45 +95,47 @@ const Installation = () => {
       ) : (
         <div className="space-y-4">
           {sortingApps.map((installedApp) => (
-            <div className="flex bg-white p-4 gap-4 items-center shadow-sm hover:shadow-lg hover:transition-all hover:duration-300">
+            <div className="flex bg-white p-2.5 sm:p-4 gap-2 sm:gap-4 items-center shadow-sm hover:shadow-lg hover:transition-all hover:duration-300">
               <div>
                 <img
-                  className="w-10 h-10 sm:w-20 sm:h-20"
+                  className="w-9 h-9 sm:w-20 sm:h-20"
                   src={installedApp.image}
                   alt=""
                 />
               </div>
               <div>
-                <h2 className="font-medium text-xl text-[#001931] mb-2 sm:mb-4">
+                <h2 className="font-medium text-lg sm:text-xl text-[#001931] mb-2 sm:mb-4">
                   {installedApp.title}
                 </h2>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center rounded-sm gap-2">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="flex items-center rounded-sm gap-0.5 sm:gap-2">
                     <img
                       className="w-3 h-3 sm:w-4 sm:h-4"
                       src={download}
                       alt=""
                     />
-                    <p className="text-[#00D390] font-medium">
+                    <p className="text-[#00D390] text-sm sm:text-base font-medium">
                       {installedApp.downloads}
                     </p>
                   </div>
-                  <div className="flex items-center rounded-sm gap-2">
+                  <div className="flex items-center rounded-sm gap-0.5 sm:gap-2">
                     <img
                       className="w-3 h-3 sm:w-4 sm:h-4"
                       src={rating}
                       alt=""
                     />
-                    <p className="text-[#FF8811] font-medium">
+                    <p className="text-[#FF8811] text-sm sm:text-base font-medium">
                       {installedApp.ratingAvg}
                     </p>
                   </div>
-                  <p className="text-[#627382]">{installedApp.size} MB</p>
+                  <p className="text-[#627382] text-sm sm:text-base">
+                    {installedApp.size} MB
+                  </p>
                 </div>
               </div>
               <button
                 onClick={() => handleRemove(installedApp)}
-                className="px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base bg-[#00D390] text-white font-medium rounded-sm ml-auto cursor-pointer"
+                className="px-2.5 py-1.5 sm:px-4 sm:py-3 text-sm sm:text-base bg-[#00D390] text-white font-medium rounded-sm ml-auto cursor-pointer"
               >
                 Uninstall
               </button>

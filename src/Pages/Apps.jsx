@@ -29,7 +29,7 @@ const Apps = () => {
   return (
     <div className="px-3.5 my-12 md:my-20">
       <div className="mb-10 text-center">
-        <h2 className="font-bold text-[#001931] text-4xl md:text-[48px]">
+        <h2 className="font-bold text-[#001931] text-4xl md:text-[48px] mb-4">
           Our All Applications
         </h2>
         <p className="md:text-xl text-lg px-2 text-[#627382]">

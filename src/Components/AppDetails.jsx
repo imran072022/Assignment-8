@@ -59,9 +59,13 @@ const AppDetails = () => {
   return (
     <div className="my-20 px-3.5">
       {/*details */}
-      <div className="flex flex-col sm:flex-row sm:gap-10 gap-4 items-start sm:items-center">
+      <div className="flex flex-col lg:flex-row sm:gap-10 gap-4 items-start lg:items-center">
         <div>
-          <img className="w-44 md:w-[350px] md:h-[350px]" src={image} alt="" />
+          <img
+            className="w-44 h-44 md:w-64 md:h-64 lg:w-[350px] lg:h-[350px]"
+            src={image}
+            alt=""
+          />
         </div>
         <div className="flex-1 w-full">
           <div>
@@ -138,7 +142,7 @@ const AppDetails = () => {
         <h2 className="text-[#001931] text-2xl font-semibold mb-6">
           Description
         </h2>
-        <p className="text-[#627382] text-xl whitespace-pre-line">
+        <p className="text-[#627382] text-lg sm:text-xl whitespace-pre-line text-justify">
           {description}
         </p>
       </div>
