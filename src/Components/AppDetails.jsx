@@ -59,11 +59,11 @@ const AppDetails = () => {
   return (
     <div className="my-20 px-3.5">
       {/*details */}
-      <div className="flex gap-10 items-center">
+      <div className="flex flex-col sm:flex-row sm:gap-10 gap-4 items-start sm:items-center">
         <div>
-          <img className="w-[350px] h-[350px]" src={image} alt="" />
+          <img className="w-44 md:w-[350px] md:h-[350px]" src={image} alt="" />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <div>
             {" "}
             <h2 className="text-[#001931] text-3xl font-bold mb-2">{title}</h2>
@@ -74,26 +74,28 @@ const AppDetails = () => {
               </span>
             </p>
           </div>
-          <hr className="border-[0.5] border-[#cfcfcf] my-7" />
-          <div className="flex gap-6">
-            <div className="w-[150px]">
-              <img className="w-10 h-10" src={download} alt="" />
+          <hr className="border-[0.5] border-[#cfcfcf] my-4 sm:my-7" />
+          <div className="flex sm:gap-6">
+            <div className="flex-1 md:mr-7">
+              <img className="w-7 h-7 md:w-10 md:h-10" src={download} alt="" />
               <p className="text-[#001931]">Downloads</p>
-              <h2 className="font-extrabold text-[40px] text-[#001931]">
+              <h2 className="font-extrabold text-2xl md:text-[40px] text-[#001931]">
                 {downloads}
               </h2>
             </div>
-            <div className="w-[150px]">
-              <img className="w-10 h-10" src={rating} alt="" />
-              <p className="text-[#001931]">Average Ratings</p>
-              <h2 className="font-extrabold text-[40px] text-[#001931]">
+            <div className="flex-1 mr-3 md:mr-7">
+              <img className="w-7 h-7 md:w-10 md:h-10" src={rating} alt="" />
+              <p className="text-[#001931] whitespace-nowrap">
+                Average Ratings
+              </p>
+              <h2 className="font-extrabold text-2xl md:text-[40px] text-[#001931]">
                 {ratingAvg}
               </h2>
             </div>
-            <div className="w-[150px]">
-              <img className="w-10 h-10" src={review} alt="" />
-              <p className="text-[#001931]">Total Reviews</p>
-              <h2 className="font-extrabold text-[40px] text-[#001931]">
+            <div className="flex-1">
+              <img className="w-7 h-7 md:w-10 md:h-10" src={review} alt="" />
+              <p className="text-[#001931] whitespace-nowrap">Total Reviews</p>
+              <h2 className="font-extrabold text-2xl md:text-[40px] text-[#001931]">
                 {reviews}
               </h2>
             </div>
@@ -101,7 +103,7 @@ const AppDetails = () => {
           <button
             disabled={installed}
             onClick={() => handleInstall()}
-            className="rounded-sm bg-[#00D390] px-5 py-3.5 text-white text-xl font-semibold mt-7"
+            className="rounded-sm bg-[#00D390] sm:px-5 sm:py-3.5 px-4 py-3 text-white text-lg sm:text-xl font-semibold mt-4 sm:mt-7"
           >
             {installed ? "Installed" : `Install Now (${size}) MB`}
           </button>

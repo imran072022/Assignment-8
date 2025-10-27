@@ -20,7 +20,7 @@ const Apps = () => {
       setTimeout(() => {
         setShowLoader(false);
         inputRef.current?.focus();
-      }, 300);
+      }, 200);
     }, 300);
   };
   const filteredApps = debouncedSearch

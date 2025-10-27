@@ -70,7 +70,7 @@ const Installation = () => {
         </p>
       </div>
       {/*Sort */}
-      <div className="flex items-center justify-between mb-4 flex-col-reverse sm:flex-row">
+      <div className="flex items-center justify-between mb-4  sm:flex-row">
         <p className="text-lg md:text-2xl font-semibold mt-1.5">
           (<span>{installedApps.length}</span>){" "}
           {installedApps.length === 1 ? "App" : "Apps"} Found
@@ -97,21 +97,33 @@ const Installation = () => {
           {sortingApps.map((installedApp) => (
             <div className="flex bg-white p-4 gap-4 items-center shadow-sm hover:shadow-lg hover:transition-all hover:duration-300">
               <div>
-                <img className="w-20 h-20" src={installedApp.image} alt="" />
+                <img
+                  className="w-10 h-10 sm:w-20 sm:h-20"
+                  src={installedApp.image}
+                  alt=""
+                />
               </div>
               <div>
-                <h2 className="font-medium text-xl text-[#001931] mb-4">
+                <h2 className="font-medium text-xl text-[#001931] mb-2 sm:mb-4">
                   {installedApp.title}
                 </h2>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center rounded-sm gap-2">
-                    <img className="w-4 h-4" src={download} alt="" />
+                    <img
+                      className="w-3 h-3 sm:w-4 sm:h-4"
+                      src={download}
+                      alt=""
+                    />
                     <p className="text-[#00D390] font-medium">
                       {installedApp.downloads}
                     </p>
                   </div>
                   <div className="flex items-center rounded-sm gap-2">
-                    <img className="w-4 h-4" src={rating} alt="" />
+                    <img
+                      className="w-3 h-3 sm:w-4 sm:h-4"
+                      src={rating}
+                      alt=""
+                    />
                     <p className="text-[#FF8811] font-medium">
                       {installedApp.ratingAvg}
                     </p>
@@ -121,7 +133,7 @@ const Installation = () => {
               </div>
               <button
                 onClick={() => handleRemove(installedApp)}
-                className="px-4 py-3 bg-[#00D390] text-white font-medium rounded-sm ml-auto cursor-pointer"
+                className="px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base bg-[#00D390] text-white font-medium rounded-sm ml-auto cursor-pointer"
               >
                 Uninstall
               </button>

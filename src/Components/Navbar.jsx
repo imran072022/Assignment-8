@@ -79,10 +79,10 @@ const Navbar = () => {
           href="https://github.com/imran072022"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-gradient-to-br from-[#632EE3] to-[#9F62F2] text-white font-semibold flex gap-2.5 rounded-sm py-[11.5px] px-[15.5px] items-center"
+          className="bg-gradient-to-br from-[#632EE3] to-[#9F62F2] text-white font-semibold flex gap-2.5 rounded-sm py-2 px-3 md:py-[11.5px] md:px-[15.5px] items-center"
         >
           <img className="w-5 h-5" src={githubLogo} alt="" />
-          <p>Contribute</p>
+          <p className="text-sm md:text-base">Contribute</p>
         </a>
       </div>
     </div>
