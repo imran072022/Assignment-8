@@ -55,8 +55,8 @@ const Installation = () => {
         <Lottie
           animationData={loadingSpinner}
           loop={true}
-          style={{ height: 300, width: 300 }}
-        ></Lottie>
+          className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px]"
+        />
       </div>
     );
   return (
@@ -90,7 +90,7 @@ const Installation = () => {
       {/*Installed app */}
       {sortingApps.length === 0 ? (
         <h2 className="text-center text-4xl font-bold text-[#676f75] mt-12">
-          No installed apps currently!
+          No apps installed currently!
         </h2>
       ) : (
         <div className="space-y-4">

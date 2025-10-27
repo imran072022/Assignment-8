@@ -72,7 +72,7 @@ const Apps = () => {
           <Lottie
             animationData={loadingSpinner}
             loop={true}
-            style={{ height: 300, width: 300 }}
+            className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px]"
           />
         </div>
       ) : filteredApps.length === 0 ? (

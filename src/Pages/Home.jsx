@@ -14,8 +14,8 @@ const Home = () => {
         <Lottie
           animationData={loadingSpinner}
           loop={true}
-          style={{ height: 300, width: 300 }}
-        ></Lottie>
+          className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px]"
+        />
       </div>
     );
   return (
